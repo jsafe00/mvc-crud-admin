@@ -1,0 +1,12 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+	<menu>
+        <add id="Thecrud_Note::Take_Note" 
+			  title="Take Note" 
+			  module="Thecrud_Note" 
+			  sortOrder="200" 
+			  parent="Magento_Reports::report"  
+			  resource="Thecrud_Note::Take_Note" 
+			  action="thecrud_note/takenote/index"/>
+	</menu>
+</config>

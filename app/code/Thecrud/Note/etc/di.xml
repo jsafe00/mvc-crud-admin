@@ -1,0 +1,18 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../lib/internal/Magento/Framework/ObjectManager/etc/config.xsd">
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="thecrud_note_takenote_listing_data_source" xsi:type="string">Thecrud\Note\Model\ResourceModel\TakeNote\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="Thecrud\Note\Model\ResourceModel\TakeNote\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">take_note</argument>
+             <argument name="eventPrefix" xsi:type="string">thecrud_note_takenote_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">take_note_grid_collection</argument>
+            <argument name="resourceModel" xsi:type="string">Thecrud\Note\Model\ResourceModel\TakeNote</argument>
+        </arguments>
+    </virtualType>
+        <preference for="Magento\Ui\Model\Export\ConvertToCsv" type="Thecrud\Note\Model\Export\ConvertToCsv" />
+</config>
