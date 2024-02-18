@@ -4,10 +4,11 @@
         <column xsi:type="int" name="entity_id" unsigned="true" nullable="false" identity="true" comment="Entity ID"/>
         <column xsi:type="varchar" name="title" nullable="false" length="255"  comment="Title"/>
         <column xsi:type="varchar" name="description" nullable="false" length="255"  comment="Description"/>
-        <column xsi:type="smallint" name="is_deleted" nullable="false" default="0" comment="0 active 1 cancel"/>
-
         <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Created At"/>
         <column xsi:type="timestamp" name="updated_at" on_update="true" nullable="false" default="CURRENT_TIMESTAMP" comment="Updated At"/>
+        
+        <column xsi:type="smallint" name="is_deleted" nullable="false" default="0" comment="0 active 1 cancel"/> 
+        <column xsi:type="timestamp" name="deleted_at" on_update="true" nullable="false" default="CURRENT_TIMESTAMP" comment="Deleted At"/>
 
         <constraint xsi:type="primary" referenceId="PRIMARY">
             <column name="entity_id"/>

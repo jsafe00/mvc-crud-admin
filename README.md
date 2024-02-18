@@ -1,3 +1,3 @@
 # Magneto admin CRUD MVC Pattern  
 
-##### #inprogress
+##### Done what is needed (MVC CRUD admin)

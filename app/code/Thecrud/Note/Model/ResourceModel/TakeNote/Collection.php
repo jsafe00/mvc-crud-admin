@@ -17,4 +17,12 @@ class Collection extends \Magento\Framework\Model\ResourceModel\Db\Collection\Ab
 		$this->_init('Thecrud\Note\Model\TakeNote', 'Thecrud\Note\Model\ResourceModel\TakeNote');
 	}
 
+    protected function _initSelect()
+    {
+        parent::_initSelect();
+
+        // Filter out soft-deleted items
+        $this->getSelect()->where('main_table.is_deleted = ?', 0);
+    }
+
 }
