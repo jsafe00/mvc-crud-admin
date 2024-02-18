@@ -17,7 +17,7 @@
         </buttons>
         <spinner>thecrud_note_takenote_columns</spinner>
         <deps>
-            <dep>tthecrud_note_takenote_listing.thecrud_note_takenote_listing_data_source</dep>
+            <dep>thecrud_note_takenote_listing.thecrud_note_takenote_listing_data_source</dep>
         </deps>
     </settings>
     <dataSource name="thecrud_note_takenote_listing_data_source" component="Magento_Ui/js/grid/provider">

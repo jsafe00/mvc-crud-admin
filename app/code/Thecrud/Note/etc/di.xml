@@ -9,7 +9,7 @@
     <virtualType name="Thecrud\Note\Model\ResourceModel\TakeNote\Grid\Collection">
         <arguments>
             <argument name="mainTable" xsi:type="string">take_note</argument>
-             <argument name="eventPrefix" xsi:type="string">thecrud_note_takenote_grid_collection</argument>
+            <argument name="eventPrefix" xsi:type="string">thecrud_note_take_note_grid_collection</argument>
             <argument name="eventObject" xsi:type="string">take_note_grid_collection</argument>
             <argument name="resourceModel" xsi:type="string">Thecrud\Note\Model\ResourceModel\TakeNote</argument>
         </arguments>
