@@ -80,6 +80,18 @@
                 <dataScope>description</dataScope>
             </settings>
         </field>
+        <field name="email" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">email</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Email</label>
+                <dataScope>email</dataScope>
+            </settings>
+        </field>
     </fieldset>
     <!-- fields(s) -->
 </form>
