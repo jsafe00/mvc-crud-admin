@@ -32,38 +32,36 @@ class Save extends Action implements HttpPostActionInterface
     public function execute(): ResultInterface
     {
         $data = $this->getRequest()->getPostValue();
-
         $email = $data['email'];
-
         $resultRedirect = $this->resultRedirectFactory->create();
+    
         if ($data) {
             $model = $this->takeNoteFactory->create();
             if (empty($data['entity_id'])) {
                 $data['entity_id'] = null;
             }
-
-            $existingEmailCount = $this->takeNoteCollectionFactory->create()
-                ->addFieldToFilter('email', $email)
-                ->getSize();
-
-            if ($existingEmailCount > 0) {
-                $this->messageManager->addErrorMessage(__('Email already sent a note'));
-            
-            } else {
-
+    
             $model->setData($data);
-                try {
-                    $this->resource->save($model);
-                    $this->messageManager->addSuccessMessage(__('Saved.'));
+    
+            try {
+                // Check for existing email count
+                $existingEmailCount = $this->takeNoteCollectionFactory->create()
+                    ->addFieldToFilter('email', $email)
+                    ->getSize();
+    
+                if ($existingEmailCount > 0) {
+                    $this->messageManager->addErrorMessage(__('Email already sent a note'));
                     return $resultRedirect->setPath('*/*/');
-                } catch (LocalizedException $exception) {
-                    $this->messageManager->addExceptionMessage($exception);
-                } catch (\Throwable $e) {
-                $this->messageManager->addErrorMessage(__('Something went wrong while saving.'));
                 }
+    
+                $this->resource->save($model);
+                $this->messageManager->addSuccessMessage(__('Saved.'));
+                return $resultRedirect->setPath('*/*/');
+            } catch (\Throwable $e) {
+                $this->messageManager->addErrorMessage(__('Something went wrong while saving.'));
             }
         }
-
+    
         return $resultRedirect->setPath('*/*/');
-    }
+    }    
 }
