@@ -15,7 +15,6 @@ use Magento\Framework\Exception\LocalizedException;
 
 class Save extends Action implements HttpPostActionInterface
 {
-    //
     protected $takeNoteCollectionFactory;
 
     public function __construct(
@@ -40,19 +39,26 @@ class Save extends Action implements HttpPostActionInterface
             $model = $this->takeNoteFactory->create();
             if (empty($data['entity_id'])) {
                 $data['entity_id'] = null;
+            } else if (!empty($data['entity_id'])) {
+                $model->load($data['entity_id']);
             }
+    
+            $previousEmail = $model->getEmail(); 
     
             $model->setData($data);
     
             try {
-                // Check for existing email count
-                $existingEmailCount = $this->takeNoteCollectionFactory->create()
-                    ->addFieldToFilter('email', $email)
-                    ->getSize();
+                // Check if email has been changed
+                if ($email !== $previousEmail) {
+                    // Check for existing email count
+                    $existingEmailCount = $this->takeNoteCollectionFactory->create()
+                        ->addFieldToFilter('email', $email)
+                        ->getSize();
     
-                if ($existingEmailCount > 0) {
-                    $this->messageManager->addErrorMessage(__('Email already sent a note'));
-                    return $resultRedirect->setPath('*/*/');
+                    if ($existingEmailCount > 0) {
+                        $this->messageManager->addErrorMessage(__('Email already sent a note'));
+                        return $resultRedirect->setPath('*/*/edit', ['entity_id' => $data['entity_id']]);
+                    }
                 }
     
                 $this->resource->save($model);
